@@ -47,8 +47,8 @@ ChatBot::~ChatBot()
 ChatBot::ChatBot(const ChatBot &source) {
     std::cout << "Chatbot Copy Constructor\n";
     *_image = *source._image;
-    *_currentNode = *source._currentNode;
-    *_rootNode = *source._rootNode;
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
     _chatLogic = source._chatLogic;
 }
 
@@ -59,8 +59,8 @@ ChatBot& ChatBot::operator=(const ChatBot &source) {
     }
     delete _image;
     *_image = *source._image;
-    *_currentNode = *source._currentNode;
-    *_rootNode = *source._rootNode;
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
     _chatLogic = source._chatLogic;
     return *this;
 }
