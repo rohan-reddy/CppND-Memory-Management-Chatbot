@@ -174,7 +174,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
     _chatBot->SetRootNode(rootNode);
 
     // pass rvalue of unique_ptr to ChatBot instance to the root GraphNode
-    rootNode->MoveChatbotHere(std::unique_ptr<ChatBot>(_chatBot));
+    rootNode->MoveChatbotHere(std::move(*_chatBot));
 }
 
 void ChatLogic::SetPanelDialogHandle(ChatBotPanelDialog *panelDialog)

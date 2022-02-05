@@ -23,16 +23,16 @@ void GraphNode::AddEdgeToChildNode(std::unique_ptr<GraphEdge> edge)
     _childEdges.push_back(std::move(edge));
 }
 
-void GraphNode::MoveChatbotHere(std::unique_ptr<ChatBot> chatbot)
+void GraphNode::MoveChatbotHere(ChatBot chatbot)
 {
-    // Force construction of ChatBot instance underlying the unique pointer to use move construction
-    _chatBot = std::make_unique<ChatBot>(std::move(*chatbot));
-    _chatBot->SetCurrentNode(this);
+    // Force construction of ChatBot instance to use move constructor
+    _chatBot = std::move(chatbot);
+    _chatBot.SetCurrentNode(this);
 }
 
 void GraphNode::MoveChatbotToNewNode(GraphNode *newNode)
 {
-    // Relinquish unique pointer to ChatBot instance
+    // Relinquish ChatBot instance
     newNode->MoveChatbotHere(std::move(_chatBot));
 }
 
